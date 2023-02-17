@@ -1,113 +1,37 @@
-import Navigo from "navigo";
-const router = new Navigo("/", { linksSelector: "a"});
+import AdminProjectEditPage from "@/pages/admin/projects-edit";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
-let effects = [];
-let currentEffectOrder = 0;
+import { render, router } from "./src/lib";
+import AboutPage from "./src/pages/about";
+import AdminProjectsPage from "./src/pages/admin/projects";
+import AdminProjectAddPage from "./src/pages/admin/projects-add";
+import ContactPage from "./src/pages/contact";
+import HomePage from "./src/pages/home";
+import NotFoundPage from "./src/pages/not-found";
+import PostDetailPage from "./src/pages/post-detail";
+import PostsPage from "./src/pages/posts";
+import ProjectDetailPage from "./src/pages/project-detail";
+import ProjectsPage from "./src/pages/projects";
 
-let rootComponent = null;
-let rootContainer = null;
+const app = document.querySelector("#app");
 
-let states = [];
-let currentStateOrder = 0;
+router.on("/", () => render(HomePage, app));
+router.on("/about", () => render(AboutPage, app));
+router.on("/contact", () => render(ContactPage, app));
+router.on("/projects", () => render(ProjectsPage, app));
+router.on("/project/:projectId", ({ data }) => render(() => ProjectDetailPage(data), app));
+router.on("/post/:postId", () => render(PostDetailPage, app));
+router.on("/posts", () => render(PostsPage, app));
 
-const debounce = (fn, timeout = 100) => {
-    let timeId = null;
+router.on("/admin/projects", () => render(AdminProjectsPage, app));
+router.on("/admin/projects/add", () => render(AdminProjectAddPage, app));
+router.on("/admin/projects/:projectId/edit", ({ data }) =>
+    render(() => AdminProjectEditPage(data), app)
+);
 
-    return (...rest) => {
-        if (timeId) clearTimeout(timeId);
+router.notFound(() => render(NotFoundPage, app));
 
-        timeId = setTimeout(() => fn(...rest), timeout);
-    };
-};
-
-const render = (component, container) => {
-    container.innerHTML = component();
-
-    rootComponent = component;
-    rootContainer = container;
-
-    effects.forEach((effect) => {
-        effect.cb();
-    });
-};
-
-const rerender = debounce(() => {
-    currentStateOrder = 0;
-    currentEffectOrder = 0;
-    rootContainer.innerHTML = rootComponent();
-
-    effects.forEach((effect) => {
-        // shouldRunEffect = true khi không truyền deps hoặc deps khác nhau
-        const shouldRunEffect =
-            !effect.nextDeps ||
-            effect.nextDeps?.some((dep, i) => {
-                return dep !== effect?.prevDeps?.[i];
-            });
-
-        if (shouldRunEffect) {
-            effect.cb();
-        }
-    });
-});
-
-const useState = (initialState) => {
-    let state;
-    let stateOrder = currentStateOrder;
-
-    if (states[stateOrder] !== undefined) {
-        state = states[stateOrder];
-    } else {
-        state = states[stateOrder] = initialState;
-    }
-
-    const updater = (newState) => {
-        if (newState === undefined) {
-            throw new Error("New state must not be undefined");
-        }
-
-        if (typeof newState === "function") {
-            states[stateOrder] = newState(states[stateOrder]);
-        } else {
-            states[stateOrder] = newState;
-        }
-
-        rerender();
-    };
-
-    currentStateOrder++;
-
-    return [state, updater];
-};
-
-const useEffect = (cb, deps) => {
-    let effectOrder = currentEffectOrder;
-
-    if (!effects[effectOrder]) {
-        effects.push({
-            cb: cb,
-            prevDeps: null,
-            nextDeps: deps,
-        });
-    } else {
-        effects[effectOrder] = {
-            cb: cb,
-            prevDeps: effects[effectOrder].nextDeps,
-            nextDeps: deps,
-        };
-    }
-
-    currentEffectOrder++;
-};
-
-router.on("/*", () => {}, {
-    before(done, match) {
-        states = [];
-        currentStateOrder = 0;
-        effects = [];
-        currentEffectOrder = 0;
-
-        done();
-    },
-});
-
-export { render, useState, useEffect, router };
+router.resolve();
+// render(HomePage, app);
+// npm i navigo --save
