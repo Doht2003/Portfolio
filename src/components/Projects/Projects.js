@@ -5,8 +5,23 @@ import Particle from "../Particle";
 import shoppi from "../..//Assets/Projects/shoppe.png";
 import Fudo from "../..//Assets/Projects/fudo.png";
 import dugilan from "../..//Assets/Projects/dugilan.png";
+import { getProjects } from "../../api/project";
+import { useEffect, useState } from "react";
 
 function Projects() {
+  const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+              // setProjects(await getProject());
+              (setProjects(await getProjects()));
+            } catch (error) {
+                console.log(error);
+            }
+        })();
+    }, []);
+
   return (
     <Container fluid className="project-section">
       <Particle />
@@ -18,7 +33,24 @@ function Projects() {
           Here are a few projects I've worked on recently.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          <Col md={4} className="project-card">
+          {projects
+            .map((project, index) => {
+              return (
+                <Col md={4} className="project-card">
+                  <ProjectCard
+                    id = {index + 1}
+                    imgPath = {project.imgPath}
+                    isBlog = {project.isBlog}
+                    title = {project.title}
+                    description = {project.description}
+                    ghLink = {project.ghLink}
+                    demoLink = {project.demoLink}
+                  />
+                </Col>
+              );
+            }).join("")
+          }
+          {/* <Col md={4} className="project-card">
             <ProjectCard
               imgPath={dugilan}
               isBlog={false}
@@ -49,7 +81,7 @@ function Projects() {
               ghLink="https://github.com/Doht2003/ASM_WEB2022"
               demoLink="https://asm-web-2022.vercel.app/"              
             />
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </Container>

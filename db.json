@@ -1,0 +1,35 @@
+{
+  "navbar": [
+    { "id": 1, "name": "Home", "link": "/" },
+    { "id": 2, "name": "About", "link": "/about" },
+    { "id": 3, "name": "Projects", "link": "/projects" },
+    { "id": 4, "name": "Resume", "link": "/resume" }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "Doht2003",
+      "passwork": "Hoang_Do"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "imgPath": "dugilan",
+      "isBlog":false,
+      "title" : "DugiLan",
+      "description" : "Build a sales website, customers can access to buy and view products.",
+      "ghLink" : "https://github.com/Doht2003/DugiLan",
+      "demoLink" : "https://dugilan.vercel.app/"
+    },
+    {
+      "id": 2,
+      "imgPath": "dugilan",
+      "isBlog":false,
+      "title" : "DugiLan",
+      "description" : "Build a sales website, customers can access to buy and view products.",
+      "ghLink" : "https://github.com/Doht2003/DugiLan",
+      "demoLink" : "https://dugilan.vercel.app/"
+    }
+  ]
+}

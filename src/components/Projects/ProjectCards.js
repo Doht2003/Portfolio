@@ -10,6 +10,7 @@ function ProjectCards(props) {
       <Card.Img variant="top" src={props.imgPath} alt="card-img" />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
+        
         <Card.Text style={{ textAlign: "justify" }}>
           {props.description}
         </Card.Text>
@@ -20,7 +21,7 @@ function ProjectCards(props) {
         {"\n"}
         {"\n"}
 
-        {/* If the component contains Demo link and if it's not a Blog then, it will render the below component  */}
+        {/*   */}
 
         {!props.isBlog && props.demoLink && (
           <Button
