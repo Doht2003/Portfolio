@@ -2,9 +2,9 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-import shoppi from "../..//Assets/Projects/shoppe.png";
-import Fudo from "../..//Assets/Projects/fudo.png";
-import dugilan from "../..//Assets/Projects/dugilan.png";
+// import shoppi from "../..//Assets/Projects/shoppe.png";
+// import Fudo from "../..//Assets/Projects/fudo.png";
+// import dugilan from "../..//Assets/Projects/dugilan.png";
 import { getProjects } from "../../api/project";
 import { useEffect, useState } from "react";
 
@@ -40,7 +40,6 @@ function Projects() {
                   <ProjectCard
                     id = {index + 1}
                     imgPath = {project.imgPath}
-                    isBlog = {project.isBlog}
                     title = {project.title}
                     description = {project.description}
                     ghLink = {project.ghLink}
@@ -48,7 +47,7 @@ function Projects() {
                   />
                 </Col>
               );
-            }).join("")
+            })
           }
           {/* <Col md={4} className="project-card">
             <ProjectCard

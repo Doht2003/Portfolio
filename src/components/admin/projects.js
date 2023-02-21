@@ -50,14 +50,13 @@ const AdminProjectsPage = () => {
                         console.log(project, index);
                         return (
                         <tr>
-                            <td>{index + 1}</td>
-                            <td>{project.title}</td>
+                            <td style={{ color: "white" }}>{index + 1}</td>
+                            <td style={{ color: "white" }}>{project.title}</td>
                             <td width="150">
                                 <button data-id={project.id} class="btn btn-danger btn-remove">Xóa</button>
                             </td>
                         </tr>)
-                    })
-                    .join("")}
+                    })}
             </tbody>
         </table>
       </Container>
