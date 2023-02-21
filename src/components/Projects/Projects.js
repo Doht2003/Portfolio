@@ -2,9 +2,9 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-// import shoppi from "../..//Assets/Projects/shoppe.png";
-// import Fudo from "../..//Assets/Projects/fudo.png";
-// import dugilan from "../..//Assets/Projects/dugilan.png";
+import shoppi from "../..//Assets/Projects/shoppe.png";
+import Fudo from "../..//Assets/Projects/fudo.png";
+import dugilan from "../..//Assets/Projects/dugilan.png";
 import { getProjects } from "../../api/project";
 import { useEffect, useState } from "react";
 
@@ -33,7 +33,7 @@ function Projects() {
           Here are a few projects I've worked on recently.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          {projects
+          {/* {projects
             .map((project, index) => {
               return (
                 <Col md={4} className="project-card">
@@ -48,8 +48,8 @@ function Projects() {
                 </Col>
               );
             })
-          }
-          {/* <Col md={4} className="project-card">
+          } */}
+          <Col md={4} className="project-card">
             <ProjectCard
               imgPath={dugilan}
               isBlog={false}
@@ -80,7 +80,7 @@ function Projects() {
               ghLink="https://github.com/Doht2003/ASM_WEB2022"
               demoLink="https://asm-web-2022.vercel.app/"              
             />
-          </Col> */}
+          </Col>
         </Row>
       </Container>
     </Container>

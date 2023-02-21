@@ -1,4 +1,14 @@
 {
+  "categories": [
+    {
+      "id":1,
+      "name": "JavaScript"
+    },
+    {
+      "id":2,
+      "name": "React"
+    }
+  ],
   "navbar": [
     {
       "id": 1,
@@ -35,7 +45,8 @@
       "title": "DugiLan",
       "description": "Build a sales website, customers can access to buy and view products.",
       "ghLink": "https://github.com/Doht2003/DugiLan",
-      "demoLink": "https://dugilan.vercel.app/"
+      "demoLink": "https://dugilan.vercel.app/",
+      "categoryId": 1
     },
     {
       "id": 2,
@@ -43,15 +54,18 @@
       "title": "Shoppe",
       "description": "This is a website inspired by websites selling jewelry and shoppe.",
       "ghLink": "https://github.com/Doht2003/shoppi",
-      "demoLink": "https://shoppi-dusky.vercel.app/"
+      "demoLink": "https://shoppi-dusky.vercel.app/",
+      "categoryId": 1
     },
+    
     {
       "id": 3,
       "imgPath": "Fudo",
       "title": "Fudo.",
       "description": "This is a website that serves a subject about a website that sells food.",
       "ghLink": "https://github.com/Doht2003/ASM_WEB2022",
-      "demoLink": "https://asm-web-2022.vercel.app/"
+      "demoLink": "https://asm-web-2022.vercel.app/",
+      "categoryId": 1
     }
   ]
 }

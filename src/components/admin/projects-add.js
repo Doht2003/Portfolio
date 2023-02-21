@@ -3,7 +3,10 @@ import { addProject } from "../../api/project";
 import { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
-// import axios from "axios";
+import "toastr/build/toastr.min.css";
+import toastr from "toastr";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const AdminProjectAddPage = () => {
     useEffect(() => {
         const form = document.querySelector("#form-add");
@@ -15,9 +18,10 @@ const AdminProjectAddPage = () => {
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault(); // disable reload
+            const urls = await uploadFiles(projectImgPath.files);
             try {
                 const formData = {
-                    imgPath: projectImgPath,
+                    imgPath: urls,
                     title: projectTitle,
                     description: projectDescription,
                     ghLink: projectGhLink,
@@ -25,11 +29,39 @@ const AdminProjectAddPage = () => {
                 };
                 await addProject(formData);
                 Route.navigate("/admin/projects");
+                toastr.success("Thêm thành công")
             } catch (error) {
-                console.log(error);
+                toastr.error("Thêm thất bại")
             }
         });
     });
+
+    const uploadFiles = async (files) => {
+        if (files) {
+            const CLOUD_NAME = "dttrmlnb3";
+            const PRESET_NAME = "upload-image";
+            const FOLDER_NAME = "Portfolio";
+            const urls = [];
+            const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+            const formProject = new FormData();
+
+            formProject.append('upload_preset',PRESET_NAME);
+            formProject.append('folder', FOLDER_NAME);
+
+            for (const file of files) {
+                formProject.append('file', file);
+                const response = await axios
+                .post(api, formProject, {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    },
+                });
+                urls.push(response.data.secure_url);
+                //console.log(urls);
+            }
+            return urls;
+        }
+    }
 
     return (
         <Container fluid className="project-section">
@@ -52,11 +84,11 @@ const AdminProjectAddPage = () => {
                 
                         <tr>
                             <td style={{ color: "white" }}></td>
-                            <td><input type="text" id="project-imgPath" class="border"/></td>
-                            <td><input type="text" id="project-title" class="border"/></td>
-                            <td><input type="text" id="project-description" class="border"/></td>
-                            <td><input type="text" id="project-ghLink" class="border"/></td>
-                            <td><input type="text" id="project-demoLink" class="border"/></td>
+                            <td><input type="file" id="project-imgPath" className="border"/></td>
+                            <td><input type="text" id="project-title" className="border"/></td>
+                            <td><input type="text" id="project-description" className="border"/></td>
+                            <td><input type="text" id="project-ghLink" className="border"/></td>
+                            <td><input type="text" id="project-demoLink" className="border"/></td>
                             <td width="150">
                                 <button class="btn btn-danger">Thêm</button>
                             </td>
@@ -64,6 +96,13 @@ const AdminProjectAddPage = () => {
             </tbody>
         </table>
         </form>
+        {/* <form id="form-add">
+            <input type="text" id="project-title" className="border" />
+            <input type="text" id="project-description" className="border" />
+            <input type="text" id="project-ghLink" className="border" />
+            <input type="text" id="project-demoLink" className="border" />
+            <button className="btn btn-danger">Thêm</button>
+        </form> */}
       </Container>
     </Container>
     )

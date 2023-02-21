@@ -2,12 +2,15 @@ import { deleteProject, getProjects } from "../../api/project";
 // import { useEffect, useState } from "../../lib";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Particle from "../Particle";
+import "toastr/build/toastr.min.css";
+import toastr from "toastr";
 // import axios from "axios";
 
 const AdminProjectsPage = () => {
     const [projects, setProjects] = useState([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
         (async () => {
             try {
@@ -27,6 +30,8 @@ const AdminProjectsPage = () => {
                 deleteProject(id).then(() => {
                     const newsProject = projects.filter((project) => project.id !== id);
                     setProjects(newsProject);
+                    toastr.success("Xoá thành công")
+                    navigate("/admin/projects")
                 });
             });
         }
@@ -47,9 +52,8 @@ const AdminProjectsPage = () => {
             <tbody>
                 {projects
                     .map((project, index) => {
-                        console.log(project, index);
                         return (
-                        <tr>
+                        <tr key={index}>
                             <td style={{ color: "white" }}>{index + 1}</td>
                             <td style={{ color: "white" }}>{project.title}</td>
                             <td width="150">
@@ -65,17 +69,3 @@ const AdminProjectsPage = () => {
 };
 
 export default AdminProjectsPage;
-
-// Bước 1: npm i -g json-server
-// Bước 2: truy cập folder root
-// json-server --watch db.json
-
-//disabled system
-// angular.io/guide/setup-local
-// copy : Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-
-// GET /projects -> list
-// GET /projects/:id -> single
-// POST /projects -> add
-// PUT /projects/:id + body -> update
-// DELETE /projects/:id -> delete
