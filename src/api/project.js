@@ -13,6 +13,7 @@ const deleteProject = (id) => {
     return instance.delete(`/projects/${id}`);
 };
 const updateProject = (project) => {
+    console.log(project);
     return instance.put(`/projects/${project.id}`, project);
 };
 

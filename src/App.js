@@ -43,7 +43,7 @@ function App() {
           <Route path="/resume" element={<Resume />} />
           <Route path="/admin/projects" element={<AdminProjectsPage/>}/>
           <Route path="/admin/project/add" element={<AdminProjectAddPage/>}/>
-          <Route path="/admin/project/:projectId/edit" element={<AdminProjectEditPage/>}/>
+          <Route path="/admin/project/:projectId/edit" element={<AdminProjectEditPage />} />
         </Routes>
         <Footer />
       </div>

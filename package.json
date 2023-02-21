@@ -20,11 +20,12 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "react-tsparticles": "^1.42.2",
+    "toastr": "^2.1.4",
     "typewriter-effect": "^2.18.2",
-    "web-vitals": "^2.1.4",
-    "start:server": "json-server --watch db.json --port 3001"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "start:server": "json-server --watch db.json --port 3001",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

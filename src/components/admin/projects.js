@@ -3,11 +3,14 @@ import { deleteProject, getProjects } from "../../api/project";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Particle from "../Particle";
+import { useNavigate } from "react-router-dom";
 // import axios from "axios";
+import "toastr/build/toastr.min.css";
+import toastr from "toastr";
 
 const AdminProjectsPage = () => {
     const [projects, setProjects] = useState([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
         (async () => {
             try {
@@ -27,6 +30,8 @@ const AdminProjectsPage = () => {
                 deleteProject(id).then(() => {
                     const newsProject = projects.filter((project) => project.id !== id);
                     setProjects(newsProject);
+                    toastr.success("Xoá thành công")
+                    navigate("/admin/projects")
                 });
             });
         }
@@ -36,7 +41,7 @@ const AdminProjectsPage = () => {
         <Container fluid className="project-section">
       <Container>
         <h1 className="project-heading"> Quản lý dự án</h1>
-        <table class="table table-bordered ">
+        <table className="table table-bordered ">
             <thead>
                 <tr>
                     <th style={{ color: "white" }}>STT</th>
@@ -47,13 +52,12 @@ const AdminProjectsPage = () => {
             <tbody>
                 {projects
                     .map((project, index) => {
-                        console.log(project, index);
                         return (
-                        <tr>
+                        <tr key={index}>
                             <td style={{ color: "white" }}>{index + 1}</td>
                             <td style={{ color: "white" }}>{project.title}</td>
                             <td width="150">
-                                <button data-id={project.id} class="btn btn-danger btn-remove">Xóa</button>
+                                <button data-id={project.id} className="btn btn-danger btn-remove">Xóa</button>
                             </td>
                         </tr>)
                     })}

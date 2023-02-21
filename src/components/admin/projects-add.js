@@ -1,10 +1,13 @@
 import { addProject } from "../../api/project";
 // import { useEffect, router } from "@/lib";
 import { useEffect } from "react";
-import { Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import "toastr/build/toastr.min.css";
+import toastr from "toastr";
+import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 const AdminProjectAddPage = () => {
+    const navigate = useNavigate()
     useEffect(() => {
         const form = document.querySelector("#form-add");
         const projectImgPath = document.querySelector("#project-imgPath");
@@ -17,55 +20,48 @@ const AdminProjectAddPage = () => {
             e.preventDefault(); // disable reload
             try {
                 const formData = {
-                    imgPath: projectImgPath,
-                    title: projectTitle,
-                    description: projectDescription,
-                    ghLink: projectGhLink,
-                    demoLink: projectDemoLink
+                    imgPath: projectImgPath.value,
+                    title: projectTitle.value,
+                    description: projectDescription.value,
+                    ghLink: projectGhLink.value,
+                    demoLink: projectDemoLink.value
                 };
                 await addProject(formData);
-                Route.navigate("/admin/projects");
+                navigate("/admin/projects")
+                toastr.success("Thêm thành công")
             } catch (error) {
-                console.log(error);
+                toastr.error("Thêm thất bại")
             }
         });
     });
 
     return (
         <Container fluid className="project-section">
-      <Container>
-        <h1 className="project-heading"> Thêm dự án</h1>
-        <form id="form-add">
-        <table class="table table-bordered ">
-            <thead>
-                <tr>
-                    <th style={{ color: "white" }}>STT</th>
-                    <th style={{ color: "white" }}>Ảnh dự án</th>
-                    <th style={{ color: "white" }}>Tên dự án</th>
-                    <th style={{ color: "white" }}>Mô tả dự án</th>
-                    <th style={{ color: "white" }}>Link GitHub dự án</th>
-                    <th style={{ color: "white" }}>Link demo dự án</th>
-                    <th ></th>
-                </tr>
-            </thead>
-            <tbody>
-                
+            <Container>
+                <h1 className="project-heading"> Thêm dự án</h1>
+                <table className="table table-bordered ">
+                    <thead>
                         <tr>
-                            <td style={{ color: "white" }}></td>
-                            <td><input type="text" id="project-imgPath" class="border"/></td>
-                            <td><input type="text" id="project-title" class="border"/></td>
-                            <td><input type="text" id="project-description" class="border"/></td>
-                            <td><input type="text" id="project-ghLink" class="border"/></td>
-                            <td><input type="text" id="project-demoLink" class="border"/></td>
-                            <td width="150">
-                                <button class="btn btn-danger">Thêm</button>
-                            </td>
+                            <th style={{ color: "white" }}>STT</th>
+                            <th style={{ color: "white" }}>Ảnh dự án</th>
+                            <th style={{ color: "white" }}>Tên dự án</th>
+                            <th style={{ color: "white" }}>Mô tả dự án</th>
+                            <th style={{ color: "white" }}>Link GitHub dự án</th>
+                            <th style={{ color: "white" }}>Link demo dự án</th>
+                            <th ></th>
                         </tr>
-            </tbody>
-        </table>
-        </form>
-      </Container>
-    </Container>
+                    </thead>
+                </table>
+                        <form id="form-add">
+                            <input type="text" id="project-imgPath" className="border" />
+                            <input type="text" id="project-title" className="border" />
+                            <input type="text" id="project-description" className="border" />
+                            <input type="text" id="project-ghLink" className="border" />
+                            <input type="text" id="project-demoLink" className="border" />
+                            <button className="btn btn-danger">Thêm</button>
+                        </form>
+            </Container>
+        </Container>
     )
 };
 
