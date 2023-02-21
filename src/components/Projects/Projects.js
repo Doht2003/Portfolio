@@ -5,35 +5,50 @@ import Particle from "../Particle";
 import shoppi from "../..//Assets/Projects/shoppe.png";
 import Fudo from "../..//Assets/Projects/fudo.png";
 import dugilan from "../..//Assets/Projects/dugilan.png";
-import { getProjects } from "../../api/project";
+import { getProjects, paginate } from "../../api/project";
 import { useEffect, useState } from "react";
+import { length } from "json-server-auth";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
   const [searchInput, setSearchInput] = useState('')
   const [filteredResults, setFilteredResults] = useState([]);
-    useEffect(() => {
-        (async () => {
-            try {
-              // setProjects(await getProject());
-              (setProjects(await getProjects()));
-            } catch (error) {
-                console.log(error);
-            }
-        })();
-    }, []);
-    const searchProject = (value) => {
-      setSearchInput(value);
-      if(searchInput !== ''){
-        const filterData = projects.filter((item) => {
-          return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
-        }) 
-        setFilteredResults(filterData)
-      } else {
-        setProjects(projects)
-      }
+  const [page, setPage] = useState(1)
+  const [totalPage, setTotalPage] = useState(0)
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       // setProjects(await getProject());
+  //       (setProjects(await getProjects()));
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   })();
+  // }, []);
+  useEffect(() => {
+    const getPaginate = async () => {
+      const  data  = await paginate(page)
+      setProjects(data);
+      const numData = data.length
+      console.log(numData);
+      setTotalPage(Math.ceil(data / 6));
+      console.log(data.lenth);
     }
+    getPaginate()
+  }, [page])
+  const searchProject = (value) => {
+    setSearchInput(value);
+    if (searchInput !== '') {
+      const filterData = projects.filter((item) => {
+        return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+      })
+      setFilteredResults(filterData)
+    } else {
+      setProjects(projects)
+    }
+  }
   return (
+
     // <>
     //   <input type="text" className="inputName" placeholder='Search....' onChange={(e) => searchProject(e.target.value)}/> 
     //   {
@@ -99,7 +114,7 @@ function Projects() {
               title="Fudo."
               description="This is a website that serves a subject about a website that sells food."
               ghLink="https://github.com/Doht2003/ASM_WEB2022"
-              demoLink="https://asm-web-2022.vercel.app/"              
+              demoLink="https://asm-web-2022.vercel.app/"
             />
           </Col>
         </Row>
