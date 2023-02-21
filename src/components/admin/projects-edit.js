@@ -27,11 +27,11 @@ const AdminProjectEditPage = ({ projectId }) => {
             try {
                 const formData = {
                     id: projectId,
-                    imgPath: projectImgPath,
-                    title: projectTitle,
-                    description: projectDescription,
-                    ghLink: projectGhLink,
-                    demoLink: projectDemoLink
+                    imgPath: projectImgPath.value,
+                    title: projectTitle.value,
+                    description: projectDescription.value,
+                    ghLink: projectGhLink.value,
+                    demoLink: projectDemoLink.value
                 };
                 await updateProject(formData);
                 Route.navigate("/admin/projects");
