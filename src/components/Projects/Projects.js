@@ -10,7 +10,8 @@ import { useEffect, useState } from "react";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
-
+  const [searchInput, setSearchInput] = useState('')
+  const [filteredResults, setFilteredResults] = useState([]);
     useEffect(() => {
         (async () => {
             try {
@@ -21,8 +22,28 @@ function Projects() {
             }
         })();
     }, []);
-
+    const searchProject = (value) => {
+      setSearchInput(value);
+      if(searchInput !== ''){
+        const filterData = projects.filter((item) => {
+          return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+        }) 
+        setFilteredResults(filterData)
+      } else {
+        setProjects(projects)
+      }
+    }
   return (
+    // <>
+    //   <input type="text" className="inputName" placeholder='Search....' onChange={(e) => searchProject(e.target.value)}/> 
+    //   {
+    //     searchInput.length > 1 ? (filteredResults.map((item) => (
+    //       <div>{item.title}</div>
+    //     )))  : (projects.map((item) => (
+    //       <div>{item.title}</div>
+    //     ))) 
+    //   }
+    // </>
     <Container fluid className="project-section">
       <Particle />
       <Container>
