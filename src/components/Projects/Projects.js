@@ -7,7 +7,6 @@ import Fudo from "../..//Assets/Projects/fudo.png";
 import dugilan from "../..//Assets/Projects/dugilan.png";
 import { getProjects, paginate } from "../../api/project";
 import { useEffect, useState } from "react";
-import { length } from "json-server-auth";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
@@ -31,8 +30,7 @@ function Projects() {
       setProjects(data);
       const numData = data.length
       console.log(numData);
-      setTotalPage(Math.ceil(data / 6));
-      console.log(data.lenth);
+      setTotalPage(Math.ceil(numData / 6));
     }
     getPaginate()
   }, [page])
@@ -46,6 +44,9 @@ function Projects() {
     } else {
       setProjects(projects)
     }
+  }
+  const handleChangePage = (page) => {
+    setPage(page)
   }
   return (
 
