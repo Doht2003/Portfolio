@@ -7,6 +7,7 @@ import Fudo from "../..//Assets/Projects/fudo.png";
 import dugilan from "../..//Assets/Projects/dugilan.png";
 import { getProjects, paginate } from "../../api/project";
 import { useEffect, useState } from "react";
+import Pagination from 'react-bootstrap/Pagination';
 
 function Projects() {
   const [projects, setProjects] = useState([]);
@@ -70,7 +71,7 @@ function Projects() {
           Here are a few projects I've worked on recently.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          {/* {projects
+          {projects
             .map((project, index) => {
               return (
                 <Col md={4} className="project-card">
@@ -85,8 +86,9 @@ function Projects() {
                 </Col>
               );
             })
-          } */}
-          <Col md={4} className="project-card">
+          }
+          
+          {/* <Col md={4} className="project-card">
             <ProjectCard
               imgPath={dugilan}
               isBlog={false}
@@ -117,8 +119,29 @@ function Projects() {
               ghLink="https://github.com/Doht2003/ASM_WEB2022"
               demoLink="https://asm-web-2022.vercel.app/"
             />
-          </Col>
+          </Col> */}
         </Row>
+          <nav aria-label="">
+            <ul class="pagination justify-content-center ">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item " aria-current="page">
+                <a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">5</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
       </Container>
     </Container>
   );
