@@ -41,7 +41,7 @@
   "projects": [
     {
       "id": 1,
-      "imgPath": "dugilan",
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=1",
       "title": "DugiLan",
       "description": "Build a sales website, customers can access to buy and view products.",
       "ghLink": "https://github.com/Doht2003/DugiLan",
@@ -50,18 +50,98 @@
     },
     {
       "id": 2,
-      "imgPath": "shoppi",
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=2",
       "title": "Shoppe",
       "description": "This is a website inspired by websites selling jewelry and shoppe.",
       "ghLink": "https://github.com/Doht2003/shoppi",
       "demoLink": "https://shoppi-dusky.vercel.app/",
       "categoryId": 1
     },
-    
     {
       "id": 3,
-      "imgPath": "Fudo",
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=3",
       "title": "Fudo.",
+      "description": "This is a website that serves a subject about a website that sells food.",
+      "ghLink": "https://github.com/Doht2003/ASM_WEB2022",
+      "demoLink": "https://asm-web-2022.vercel.app/",
+      "categoryId": 1
+    },
+    {
+      "id": 4,
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=4",
+      "title": "Dự án 4",
+      "description": "This is a website that serves a subject about a website that sells food.",
+      "ghLink": "https://github.com/Doht2003/ASM_WEB2022",
+      "demoLink": "https://asm-web-2022.vercel.app/",
+      "categoryId": 1
+    },
+    {
+      "id": 5,
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=5",
+      "title": "Dự án 5",
+      "description": "This is a website that serves a subject about a website that sells food.",
+      "ghLink": "https://github.com/Doht2003/ASM_WEB2022",
+      "demoLink": "https://asm-web-2022.vercel.app/",
+      "categoryId": 1
+    },
+    {
+      "id": 6,
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=6",
+      "title": "Dự án 6",
+      "description": "This is a website that serves a subject about a website that sells food.",
+      "ghLink": "https://github.com/Doht2003/ASM_WEB2022",
+      "demoLink": "https://asm-web-2022.vercel.app/",
+      "categoryId": 1
+    },
+    {
+      "id": 7,
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=7",
+      "title": "Dự án 7",
+      "description": "This is a website that serves a subject about a website that sells food.",
+      "ghLink": "https://github.com/Doht2003/ASM_WEB2022",
+      "demoLink": "https://asm-web-2022.vercel.app/",
+      "categoryId": 1
+    },
+    {
+      "id": 8,
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=8",
+      "title": "Dự án 8",
+      "description": "This is a website that serves a subject about a website that sells food.",
+      "ghLink": "https://github.com/Doht2003/ASM_WEB2022",
+      "demoLink": "https://asm-web-2022.vercel.app/",
+      "categoryId": 1
+    },
+    {
+      "id": 9,
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=9",
+      "title": "Dự án 9",
+      "description": "This is a website that serves a subject about a website that sells food.",
+      "ghLink": "https://github.com/Doht2003/ASM_WEB2022",
+      "demoLink": "https://asm-web-2022.vercel.app/",
+      "categoryId": 1
+    },
+    {
+      "id": 10,
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=10",
+      "title": "Dự án 10",
+      "description": "This is a website that serves a subject about a website that sells food.",
+      "ghLink": "https://github.com/Doht2003/ASM_WEB2022",
+      "demoLink": "https://asm-web-2022.vercel.app/",
+      "categoryId": 1
+    },
+    {
+      "id": 11,
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=11",
+      "title": "Dự án 11",
+      "description": "This is a website that serves a subject about a website that sells food.",
+      "ghLink": "https://github.com/Doht2003/ASM_WEB2022",
+      "demoLink": "https://asm-web-2022.vercel.app/",
+      "categoryId": 1
+    },
+    {
+      "id": 12,
+      "imgPath": "https://source.unsplash.com/random/200x200?sig=12",
+      "title": "Dự án 12",
       "description": "This is a website that serves a subject about a website that sells food.",
       "ghLink": "https://github.com/Doht2003/ASM_WEB2022",
       "demoLink": "https://asm-web-2022.vercel.app/",
