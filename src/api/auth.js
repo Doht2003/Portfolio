@@ -1,12 +1,12 @@
-import instance from "./config";
+import instance from "./conpig";
 
 const register = (user) => {
-    return instance.post("/signup", user);
+    return instance.post("/register", user);
     // email : required
     // password: required
 };
 const login = (user) => {
-    return instance.post("/signin", user);
+    return instance.post("/login", user);
     // email : required
     // password: required
 };

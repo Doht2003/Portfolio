@@ -8,6 +8,11 @@ import toastr from "toastr";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 const AdminProjectAddPage = () => {
+    const navigate = useNavigate()
+    const tokenLogin = localStorage.getItem("token")
+    if(!tokenLogin){
+        navigate("/login")
+    }
     useEffect(() => {
         const form = document.querySelector("#form-add");
         const projectImgPath = document.querySelector("#project-imgPath");
@@ -68,7 +73,7 @@ const AdminProjectAddPage = () => {
       <Container>
         <h1 className="project-heading"> Thêm dự án</h1>
         <form id="form-add">
-        <table class="table table-bordered ">
+        <table className="table table-bordered ">
             <thead>
                 <tr>
                     <th style={{ color: "white" }}>STT</th>
@@ -90,7 +95,7 @@ const AdminProjectAddPage = () => {
                             <td><input type="text" id="project-ghLink" className="border"/></td>
                             <td><input type="text" id="project-demoLink" className="border"/></td>
                             <td width="150">
-                                <button class="btn btn-danger">Thêm</button>
+                                <button className="btn btn-danger">Thêm</button>
                             </td>
                         </tr>
             </tbody>

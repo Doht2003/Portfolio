@@ -138,18 +138,18 @@ function Projects() {
                   }
                 </Row>
                 <nav aria-label="">
-                  <ul class="pagination justify-content-center ">
+                  <ul className="pagination justify-content-center ">
                     {[...Array(totalPage).keys()].map((item, index) => (
-                      <li class="page-item" key={index}><a class="page-link" onClick={() => handleChangePage(index + 1)}>{item + 1 }
-                        {item + 1 == index +1 ? <span class="visually-hidden">(current)</span> : ""}</a>
+                      <li className="page-item" key={index}><a className="page-link" onClick={() => handleChangePage(index + 1)}>{item + 1 }
+                        {item + 1 == index +1 ? <span className="visually-hidden">(current)</span> : ""}</a>
                       </li>
                     ))}
-                    {/* <li class="page-item " aria-current="page">
-                      <a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
+                    {/* <li className="page-item " aria-current="page">
+                      <a className="page-link" href="#">2 <span className="visually-hidden">(current)</span></a>
                     </li>
-                    <li class="page-item active"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li> */}
+                    <li className="page-item active"><a className="page-link" href="#">3</a></li>
+                    <li className="page-item"><a className="page-link" href="#">4</a></li>
+                    <li className="page-item"><a className="page-link" href="#">5</a></li> */}
                   </ul>
                 </nav>
               </>

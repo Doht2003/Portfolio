@@ -1,11 +1,11 @@
 {
   "categories": [
     {
-      "id":1,
+      "id": 1,
       "name": "JavaScript"
     },
     {
-      "id":2,
+      "id": 2,
       "name": "React"
     }
   ],
@@ -36,6 +36,12 @@
       "id": 1,
       "email": "Doht2003",
       "passwork": "Hoang_Do"
+    },
+    {
+      "email": "nqdy0110@gmail.com",
+      "password": "$2a$10$3RRf2gB7uichg5aQ6RA22uN6KoKIvY2lWDJw0sOskj9EuiFCmYcfW",
+      "username": "Nguyễn Quý Duy",
+      "id": 2
     }
   ],
   "projects": [

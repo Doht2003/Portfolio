@@ -18,6 +18,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Register from "./components/Auth/Register";
+import Login from "./components/Auth/Login";
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -41,6 +43,8 @@ function App() {
           <Route path="/project" element={<Projects />} />
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/admin/projects" element={<AdminProjectsPage/>}/>
           <Route path="/admin/project/add" element={<AdminProjectAddPage/>}/>
           <Route path="/admin/project/:projectId/edit" element={<AdminProjectEditPage/>}/>
