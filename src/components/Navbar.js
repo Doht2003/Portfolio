@@ -3,8 +3,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import logo from "../Assets/logo.png";
-import Button from "react-bootstrap/Button";
-import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
 import { ImBlog } from "react-icons/im";
@@ -54,15 +52,6 @@ function NavBar() {
         </Navbar.Toggle>
 
         <Navbar.Collapse id="responsive-navbar-nav">
-        <Form className="d-flex px-4">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2 px-4"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
           <Nav className="ms-auto" defaultActiveKey="#home">
             <Nav.Item>
               <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>

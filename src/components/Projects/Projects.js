@@ -7,8 +7,9 @@ import Fudo from "../..//Assets/Projects/fudo.png";
 import dugilan from "../..//Assets/Projects/dugilan.png";
 import { getProjects, paginate } from "../../api/project";
 import { useEffect, useState } from "react";
-import Pagination from 'react-bootstrap/Pagination';
-
+import Button from "react-bootstrap/Button";
+import Form from 'react-bootstrap/Form';
+import { AiOutlineSearch } from "react-icons/ai";
 function Projects() {
   const [projects, setProjects] = useState([]);
   const [searchInput, setSearchInput] = useState('')
@@ -64,6 +65,17 @@ function Projects() {
     <Container fluid className="project-section">
       <Particle />
       <Container>
+      <Row style={{ paddingBottom: "10px" }}>
+        <Form className="d-flex justify-content-end">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2 w-25"
+              aria-label="Search"
+            />
+            <Button variant="outline-success"><AiOutlineSearch/></Button>
+          </Form>
+      </Row>
         <h1 className="project-heading">
           My Recent <strong className="purple">Works </strong>
         </h1>
