@@ -26,7 +26,6 @@ function Projects() {
 
   return (
     <Container fluid className="project-section ">
-      <Particle />
       <Container>
       <Row style={{ paddingBottom: "10px" }}>
         <Form className="d-flex justify-content-end">
