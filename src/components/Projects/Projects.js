@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, InputGroup } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
 import shoppi from "../..//Assets/Projects/shoppe.png";
@@ -28,15 +28,15 @@ function Projects() {
   // }, []);
   useEffect(() => {
     const getPaginate = async () => {
-      const  data  = await paginate(page)
+      const data = await paginate(page)
       setProjects(data);
       const numData = data.length
-      console.log(numData);
-      setTotalPage(Math.ceil(numData / 6));
+      setTotalPage(Math.ceil(numData / 5));
     }
     getPaginate()
   }, [page])
   const searchProject = (value) => {
+    console.log(value);
     setSearchInput(value);
     if (searchInput !== '') {
       const filterData = projects.filter((item) => {
@@ -51,9 +51,7 @@ function Projects() {
     setPage(page)
   }
   return (
-
     // <>
-    //   <input type="text" className="inputName" placeholder='Search....' onChange={(e) => searchProject(e.target.value)}/> 
     //   {
     //     searchInput.length > 1 ? (filteredResults.map((item) => (
     //       <div>{item.title}</div>
@@ -62,100 +60,104 @@ function Projects() {
     //     ))) 
     //   }
     // </>
-    <Container fluid className="project-section">
-      <Particle />
-      <Container>
-      <Row style={{ paddingBottom: "10px" }}>
-        <Form className="d-flex justify-content-end">
+    <>
+      <Container fluid className="project-section">
+        {/* <input type="text" className="inputName" placeholder='Search....' onChange={(e) => searchProject(e.target.value)} /> */}
+        <Row style={{ paddingBottom: "10px" }}>
+          <Form className="d-flex justify-content-end">
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2 w-25"
               aria-label="Search"
+              onChange={(e) => searchProject(e.target.value)}
             />
-            <Button variant="outline-success"><AiOutlineSearch/></Button>
+            <Button variant="outline-success"><AiOutlineSearch /></Button>
           </Form>
-      </Row>
-        <h1 className="project-heading">
-          My Recent <strong className="purple">Works </strong>
-        </h1>
-        <p style={{ color: "white" }}>
-          Here are a few projects I've worked on recently.
-        </p>
-        <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+        </Row>
+        <Particle />
+        <Container>
+          <h1 className="project-heading">
+            My Recent <strong className="purple">Works </strong>
+          </h1>
+          <p style={{ color: "white" }}>
+            Here are a few projects I've worked on recently.
+          </p>
+          {/* <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           {projects
             .map((project, index) => {
               return (
                 <Col md={4} className="project-card">
                   <ProjectCard
-                    id = {index + 1}
-                    imgPath = {project.imgPath}
-                    title = {project.title}
-                    description = {project.description}
-                    ghLink = {project.ghLink}
-                    demoLink = {project.demoLink}
+                    id={index + 1}
+                    imgPath={project.imgPath}
+                    title={project.title}
+                    description={project.description}
+                    ghLink={project.ghLink}
+                    demoLink={project.demoLink}
                   />
                 </Col>
               );
             })
           }
-          
-          {/* <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={dugilan}
-              isBlog={false}
-              title="DugiLan"
-              description="Build a sales website, customers can access to buy and view products."
-              ghLink="https://github.com/Doht2003/DugiLan"
-              demoLink="https://dugilan.vercel.app/"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={shoppi}
-              isBlog={false}
-              title="Shoppe"
-              description="This is a website inspired by websites selling jewelry and shoppe"
-              ghLink="https://github.com/Doht2003/shoppi"
-              demoLink="https://shoppi-dusky.vercel.app/"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={Fudo}
-              isBlog={false}
-              title="Fudo."
-              description="This is a website that serves a subject about a website that sells food."
-              ghLink="https://github.com/Doht2003/ASM_WEB2022"
-              demoLink="https://asm-web-2022.vercel.app/"
-            />
-          </Col> */}
-        </Row>
-          <nav aria-label="">
-            <ul class="pagination justify-content-center ">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item " aria-current="page">
-                <a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
-              </li>
-              <li class="page-item active"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">5</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+        </Row> */}
+          {
+            searchInput.length > 1 ? (
+              <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+                {filteredResults.map(((item, index) => (
+                  <Col md={4} className="project-card" key={index}>
+                    <ProjectCard
+                      id={index + 1}
+                      imgPath={item.imgPath}
+                      title={item.title}
+                      description={item.description}
+                      ghLink={item.ghLink}
+                      demoLink={item.demoLink}
+                    />
+                  </Col>
+                )))}
+              </Row>
+            ) : (
+              <>
+                <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+                  {projects
+                    .map((project, index) => {
+                      return (
+                        <Col md={4} className="project-card" key={index}>
+                          <ProjectCard
+                            id={index + 1}
+                            imgPath={project.imgPath}
+                            title={project.title}
+                            description={project.description}
+                            ghLink={project.ghLink}
+                            demoLink={project.demoLink}
+                          />
+                        </Col>
+                      );
+                    })
+                  }
+                </Row>
+                <nav aria-label="">
+                  <ul class="pagination justify-content-center ">
+                    {[...Array(totalPage).keys()].map((item, index) => (
+                      <li class="page-item" key={index}><a class="page-link" onClick={() => handleChangePage(index + 1)}>{item + 1 }
+                        {item + 1 == index +1 ? <span class="visually-hidden">(current)</span> : ""}</a>
+                      </li>
+                    ))}
+                    {/* <li class="page-item " aria-current="page">
+                      <a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li> */}
+                  </ul>
+                </nav>
+              </>
+            )
+          }
+        </Container>
       </Container>
-    </Container>
+    </>
   );
 }
 
