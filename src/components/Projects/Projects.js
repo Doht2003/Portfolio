@@ -7,10 +7,10 @@ import Fudo from "../..//Assets/Projects/fudo.png";
 import dugilan from "../..//Assets/Projects/dugilan.png";
 import { getProjects } from "../../api/project";
 import { useEffect, useState } from "react";
-import Pagination from 'react-bootstrap/Pagination';
-
+import Button from "react-bootstrap/Button";
+import Form from 'react-bootstrap/Form';
+import { AiOutlineSearch } from "react-icons/ai";
 function Projects() {
-  const [page, setPage] = useState(1)
   const [projects, setProjects] = useState([]);
 
     useEffect(() => {
@@ -25,9 +25,20 @@ function Projects() {
     }, []);
 
   return (
-    <Container fluid className="project-section">
+    <Container fluid className="project-section ">
       <Particle />
       <Container>
+      <Row style={{ paddingBottom: "10px" }}>
+        <Form className="d-flex justify-content-end">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2 w-25"
+              aria-label="Search"
+            />
+            <Button variant="outline-success"><AiOutlineSearch/></Button>
+          </Form>
+      </Row>
         <h1 className="project-heading">
           My Recent <strong className="purple">Works </strong>
         </h1>
