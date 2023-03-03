@@ -8,6 +8,10 @@ import toastr from "toastr";
 const AdminProjectEditPage = ({ projectId }) => {
     const [project, setProject] = useState({});
     const navigate = useNavigate()
+    const tokenLogin = localStorage.getItem("token")
+    if(!tokenLogin){
+        navigate("/login")
+    }
     const idUrl = new URL(window.location.href);
     const id = idUrl.pathname.split("/")[3];
     useEffect(() => {
@@ -26,7 +30,6 @@ const AdminProjectEditPage = ({ projectId }) => {
         const projectDescription = document.querySelector("#project-description");
         const projectGhLink = document.querySelector("#project-ghLink");
         const projectDemoLink = document.querySelector("#project-demoLink");
-
         form.addEventListener("submit", async function (e) {
             e.preventDefault(); // disable reload
             try {
@@ -51,7 +54,7 @@ const AdminProjectEditPage = ({ projectId }) => {
       <Container>
         <h1 className="project-heading"> Sửa dự án</h1>
         <form id="form-edit">
-        <table class="table table-bordered ">
+        <table className="table table-bordered ">
             <thead>
                 <tr>
                     <th style={{ color: "white" }}>STT</th>
@@ -64,16 +67,16 @@ const AdminProjectEditPage = ({ projectId }) => {
                 </tr>
             </thead>
             <tbody>
-                
+
                         <tr>
                             <td style={{ color: "white" }}>{project.id}</td>
-                            <td><input type="text" id="project-imgPath" class="border" value={project.imgPath} /></td>
-                            <td><input type="text" id="project-title" class="border" value={project.title} /></td>
-                            <td><input type="text" id="project-description" class="border" value={project.description} /></td>
-                            <td><input type="text" id="project-ghLink" class="border" value={project.ghLink} /></td>
-                            <td><input type="text" id="project-demoLink" class="border" value={project.demoLink} /></td>
+                            <td><input type="text" id="project-imgPath" className="border" value={project.imgPath} /></td>
+                            <td><input type="text" id="project-title" className="border" value={project.title} /></td>
+                            <td><input type="text" id="project-description" className="border" value={project.description} /></td>
+                            <td><input type="text" id="project-ghLink" className="border" value={project.ghLink} /></td>
+                            <td><input type="text" id="project-demoLink" className="border" value={project.demoLink} /></td>
                             <td width="150">
-                                <button class="btn btn-danger">Sửa</button>
+                                <button className="btn btn-danger">Sửa</button>
                             </td>
                         </tr>
             </tbody>
@@ -85,11 +88,10 @@ const AdminProjectEditPage = ({ projectId }) => {
     // return `<div>
     //     <h1>Edit dự án</h1>
     //     <form id="form-edit">
-    //         <input type="text" id="project-name" class="border" value="${project.name}"/>
-    //         <input type="text" id="project-author" class="border" value="${project.author}"/>
+    //         <input type="text" id="project-name" className="border" value="${project.name}"/>
+    //         <input type="text" id="project-author" className="border" value="${project.author}"/>
     //         <button>Sửa</button>
     //     </form>
     // </div>`;
 };
-
 export default AdminProjectEditPage;

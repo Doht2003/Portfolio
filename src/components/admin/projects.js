@@ -7,10 +7,13 @@ import Particle from "../Particle";
 import "toastr/build/toastr.min.css";
 import toastr from "toastr";
 // import axios from "axios";
-
 const AdminProjectsPage = () => {
     const [projects, setProjects] = useState([]);
     const navigate = useNavigate();
+    const tokenLogin = localStorage.getItem("token")
+    if(!tokenLogin){
+        navigate("/login")
+    }
     useEffect(() => {
         (async () => {
             try {
@@ -36,12 +39,11 @@ const AdminProjectsPage = () => {
             });
         }
     });
-
     return (
         <Container fluid className="project-section">
       <Container>
         <h1 className="project-heading"> Quản lý dự án</h1>
-        <table class="table table-bordered ">
+        <table className="table table-bordered ">
             <thead>
                 <tr>
                     <th style={{ color: "white" }}>STT</th>
@@ -57,7 +59,7 @@ const AdminProjectsPage = () => {
                             <td style={{ color: "white" }}>{index + 1}</td>
                             <td style={{ color: "white" }}>{project.title}</td>
                             <td width="150">
-                                <button data-id={project.id} class="btn btn-danger btn-remove">Xóa</button>
+                                <button data-id={project.id} className="btn btn-danger btn-remove">Xóa</button>
                             </td>
                         </tr>)
                     })}
@@ -67,5 +69,4 @@ const AdminProjectsPage = () => {
     </Container>
     )
 };
-
 export default AdminProjectsPage;

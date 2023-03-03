@@ -8,6 +8,11 @@ import toastr from "toastr";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 const AdminProjectAddPage = () => {
+    const navigate = useNavigate()
+    const tokenLogin = localStorage.getItem("token")
+    if(!tokenLogin){
+        navigate("/login")
+    }
     useEffect(() => {
         const form = document.querySelector("#form-add");
         const projectImgPath = document.querySelector("#project-imgPath");
@@ -15,7 +20,6 @@ const AdminProjectAddPage = () => {
         const projectDescription = document.querySelector("#project-description");
         const projectGhLink = document.querySelector("#project-ghLink");
         const projectDemoLink = document.querySelector("#project-demoLink");
-
         form.addEventListener("submit", async (e) => {
             e.preventDefault(); // disable reload
             const urls = await uploadFiles(projectImgPath.files);
@@ -35,7 +39,6 @@ const AdminProjectAddPage = () => {
             }
         });
     });
-
     const uploadFiles = async (files) => {
         if (files) {
             const CLOUD_NAME = "dttrmlnb3";
@@ -44,10 +47,8 @@ const AdminProjectAddPage = () => {
             const urls = [];
             const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
             const formProject = new FormData();
-
             formProject.append('upload_preset',PRESET_NAME);
             formProject.append('folder', FOLDER_NAME);
-
             for (const file of files) {
                 formProject.append('file', file);
                 const response = await axios
@@ -62,13 +63,12 @@ const AdminProjectAddPage = () => {
             return urls;
         }
     }
-
     return (
         <Container fluid className="project-section">
       <Container>
         <h1 className="project-heading"> Thêm dự án</h1>
         <form id="form-add">
-        <table class="table table-bordered ">
+        <table className="table table-bordered ">
             <thead>
                 <tr>
                     <th style={{ color: "white" }}>STT</th>
@@ -90,7 +90,7 @@ const AdminProjectAddPage = () => {
                             <td><input type="text" id="project-ghLink" className="border"/></td>
                             <td><input type="text" id="project-demoLink" className="border"/></td>
                             <td width="150">
-                                <button class="btn btn-danger">Thêm</button>
+                                <button className="btn btn-danger">Thêm</button>
                             </td>
                         </tr>
             </tbody>
@@ -107,5 +107,4 @@ const AdminProjectAddPage = () => {
     </Container>
     )
 };
-
 export default AdminProjectAddPage;

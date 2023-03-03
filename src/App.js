@@ -9,6 +9,8 @@ import Resume from "./components/Resume/ResumeNew";
 import AdminProjectsPage from "./components/admin/projects";
 import AdminProjectAddPage from "./components/admin/projects-add";
 import AdminProjectEditPage from "./components/admin/projects-edit";
+import Register from "./components/Auth/Register";
+import Login from "./components/Auth/Login";
 import {
   BrowserRouter as Router,
   Route,
@@ -41,6 +43,8 @@ function App() {
           <Route path="/project" element={<Projects />} />
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/admin/projects" element={<AdminProjectsPage/>}/>
           <Route path="/admin/project/add" element={<AdminProjectAddPage/>}/>
           <Route path="/admin/project/:projectId/edit" element={<AdminProjectEditPage/>}/>

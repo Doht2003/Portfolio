@@ -15,5 +15,8 @@ const deleteProject = (id) => {
 const updateProject = (project) => {
     return instance.put(`/projects/${project.id}`, project);
 };
+const paginate = (page) => {
+    return instance.get(`projects?_page=${page}&_limit=6`)
+}
 
-export { getProjects, getProject, addProject, deleteProject, updateProject };
+export { getProjects, getProject, addProject, deleteProject, updateProject, paginate };
