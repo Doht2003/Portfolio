@@ -32,7 +32,7 @@ const Register = () => {
         const body = JSON.stringify({ username, email, password });
         try {
             // const res = await axios.post('http://localhost:3001/users/signup', body, config);
-            await axios.post('http://localhost:3001/users/signup', body, config);
+            await axios.post('https://8s584j-8080.preview.csb.app/users/signup', body, config);
             toastr.success("Đăng ký thành công")
             navigate("/login")
             // navigate("/admin/projects")
